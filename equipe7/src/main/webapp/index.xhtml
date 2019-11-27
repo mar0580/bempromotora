@@ -17,20 +17,22 @@
 	<h:form style=" margin:auto;">
 
 		<p:panel id="panel-login-principal" header="Login"
-			footer="Sistema de gerenciamento de crédito" style="width:500px;">
+			footer="Sistema de gerenciamento de crédito" style="width:350px;">
 
 			<h:panelGrid columns="2" cellpadding="10">
 
 				<h:panelGrid columns="2" cellpadding="5">
 
 					<p:outputLabel value="Username" />
-					<p:inputText id="username" value="#{loginBean.user}" />
+					<br></br>
+					<p:inputText id="username" value="#{loginBean.user}" label="Username"/>
 					<p:message for="username" />
-
+					
 					<p:outputLabel value="Password" />
+					<br></br>
 					<p:password id="password" value="#{loginBean.password}" />
 					<p:message for="password" />
-
+					
 					<p:commandButton action="#{loginBean.validateUsernamePassword}"
 						value="Login" />
 				</h:panelGrid>

@@ -6,9 +6,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
 import com.equipe7.dao.LoginDAO;
+import com.equipe7.entity.Login;
 
 @ManagedBean
 @SessionScoped
@@ -44,6 +46,7 @@ public class LoginBean implements Serializable {
 		this.user = user;
 	}
 
+	
 	// validate login
 	public String validateUsernamePassword() {
 		boolean valid = LoginDAO.validate(user, password);

@@ -8,37 +8,35 @@ import javax.validation.constraints.Max;
 public class Login {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idUser;
+	private Long idUsuario;
 
 	@Max(30)
-	private String user;
+	private String login;
 
 	@Max(30)
-	private String password;
+	private String senha;
 
-	public Long getIdUser() {
-		return idUser;
+	public Long getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
-	public String getUser() {
-		return user;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
-
-	
 }

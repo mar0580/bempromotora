@@ -11,10 +11,10 @@
 	<script name="jquery/jquery.js" library="primefaces"></script>
 </h:head>
 <h:body>
-	<h:form style="width:400px;">
+	<h:form style="width:700px;">
 		<p:menubar>
 			<p:submenu label="Cadastro">
-				<p:menuitem value="Nova Proposta"></p:menuitem>
+				<p:menuitem value="Nova Proposta" action="cadastro.xhtml?faces-redirect=true"></p:menuitem>				
 				<p:menuitem value="Editar Proposta"></p:menuitem>
 				<p:menuitem value="Listar Proposta"></p:menuitem>
 			</p:submenu>
@@ -22,7 +22,7 @@
 				<p:menuitem value="Logout"></p:menuitem>
 			</p:submenu>
 		</p:menubar>
-		<p>Usuario #{loginBean.user} logado</p>
+		<p>Usuario:  #{loginBean.user}</p>
 		<h:commandLink action="#{loginBean.logout}" value="Logout"></h:commandLink>
 	</h:form>
 </h:body>

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>App Bem Promotora - Proposta</title>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+</h:head>
+<h:body>
+	<h:form style="width:700px;">
+		<p:menubar>
+			<p:submenu label="Cadastro">
+				<p:menuitem value="Nova Proposta"></p:menuitem>
+				<p:menuitem value="Editar Proposta"></p:menuitem>
+				<p:menuitem value="Listar Proposta"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="Help">
+				<p:menuitem value="Logout"></p:menuitem>
+			</p:submenu>
+		</p:menubar>
+		<p>Usuario: #{loginBean.user}</p>
+		<h:commandLink action="#{loginBean.logout}" value="Logout"></h:commandLink>
+
+		<p:panel id="panel-login-principal" header="Cadastro de Proposta"
+			footer="Sistema de gerenciamento de crédito" style="width:450px;">
+
+			<h:panelGrid columns="2" cellpadding="10">
+
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="Nome" />
+					<p:inputText id="nome" value="#{pessoaBean.nome}" />
+					
+					<p:outputLabel value="Sexo" />
+					<p:inputText id="sexo" value="#{pessoaBean.sexo}" />
+					
+					<p:outputLabel value="Tipo Doc." />
+					<p:inputText id="tipoDocumento" value="#{pessoaBean.tipoDocumento}" />				
+					
+					<p:outputLabel value="Num. Documento" />
+					<p:inputText id="numDocumento" value="#{pessoaBean.numDocumento}" />
+					
+					<p:outputLabel value="Email" />
+					<p:inputText id="email" value="#{pessoaBean.email}" />				
+					
+					<p:outputLabel value="Telefone" />
+					<p:inputText id="telefone" value="#{pessoaBean.telefone}" />
+					
+					<p:outputLabel value="Endereço" />
+					<p:inputText id="endereco" value="#{pessoaBean.endereco}" />
+					
+					<p:outputLabel value="Idade" />
+					<p:inputText id="idade" value="#{pessoaBean.idade}" />
+				</h:panelGrid>
+
+			</h:panelGrid>
+			<h:commandButton value="Submit" action="#{pessoaBean.insert}" />
+		</p:panel>
+
+
+
+
+
+
+	</h:form>
+</h:body>
+</html>

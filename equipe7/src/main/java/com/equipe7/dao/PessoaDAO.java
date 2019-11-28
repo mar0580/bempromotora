@@ -2,44 +2,39 @@ package com.equipe7.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import com.equipe7.util.DataConnect;
 
 public class PessoaDAO {
-
-	
-
 	public static boolean insert(String nome, String sexo, int tipoDocumento, String numDocumento, String email,
-			String telefone, String endereco, long idade) {
+			String telefone, String endereco, long idade, String dataCadastro) {
 		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
 			con = DataConnect.getConnection();
-			ps = con.prepareStatement("INSERT INTO tb_pessoa (nome, sexo, tipoDocumento, numDocumento, email, telefone,  endereco,  idade, dt_cadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, now()");
-						
+			ps = con.prepareStatement(
+					"INSERT INTO tb_pessoa (nome, idade, sexo, tipoDocumento, numDocumento, dataCadastro, email, telefone,  endereco, id_usuario_cadastro) VALUES (?,?,?,?,?,?,?,?,?,1)");
+
 			ps.setString(1, nome);
-			ps.setString(2, sexo);
-			ps.setLong(3, tipoDocumento);
-			ps.setString(4, numDocumento);
-			ps.setString(5, email);
-			ps.setString(6, telefone);
-			ps.setString(7, endereco);
-			ps.setString(8, numDocumento);
-			ps.setLong(9, idade);
-			
-			
+			ps.setLong(2, idade);
+			ps.setString(3, sexo);
+			ps.setLong(4, tipoDocumento);
+			ps.setString(5, numDocumento);
+			ps.setString(6,
+					(String) new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
+			ps.setString(7, email);
+			ps.setString(8, telefone);
+			ps.setString(9, endereco);
+
 			int rowsInserted = ps.executeUpdate();
 			if (rowsInserted > 0) {
-			    System.out.println("A new user was inserted successfully!");
+				System.out.println("Registro inserido com sucesso!");
 			}
 
-//			if (rs.next()) {
-//				// result found, means valid inputs
-//				return true;
-//			}
 		} catch (SQLException ex) {
 			System.out.println("Login error -->" + ex.getMessage());
 			return false;

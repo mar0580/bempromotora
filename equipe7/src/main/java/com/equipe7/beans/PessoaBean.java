@@ -23,6 +23,7 @@ public class PessoaBean implements Serializable {
 	private String telefone;
 	private String endereco;
 	private long idade;
+	private String dataCadastro;
 
 	public String getNome() {
 		return nome;
@@ -88,8 +89,16 @@ public class PessoaBean implements Serializable {
 		this.idade = idade;
 	}
 	
+	public String getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(String dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
 	public String insert() {
-		boolean valid = PessoaDAO.insert(nome, sexo, tipoDocumento, numDocumento, email, telefone, endereco, idade);
+		boolean valid = PessoaDAO.insert(nome, sexo, tipoDocumento, numDocumento, email, telefone, endereco, idade, dataCadastro);
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("nome", nome);
@@ -103,7 +112,7 @@ public class PessoaBean implements Serializable {
 			return "admin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-					"Incorrect Username and Passowrd", "Please enter correct username and Password"));
+					"Erro ao cadastrar pessoa.", "Por favor repita o processo"));
 			return "insert";
 		}
 	}

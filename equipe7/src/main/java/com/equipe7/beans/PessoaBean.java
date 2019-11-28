@@ -1,13 +1,13 @@
 package com.equipe7.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import com.equipe7.dao.LoginDAO;
 import com.equipe7.dao.PessoaDAO;
 
 @ManagedBean
@@ -88,7 +88,7 @@ public class PessoaBean implements Serializable {
 	public void setIdade(long idade) {
 		this.idade = idade;
 	}
-	
+
 	public String getDataCadastro() {
 		return dataCadastro;
 	}
@@ -98,7 +98,8 @@ public class PessoaBean implements Serializable {
 	}
 
 	public String insert() {
-		boolean valid = PessoaDAO.insert(nome, sexo, tipoDocumento, numDocumento, email, telefone, endereco, idade, dataCadastro);
+		boolean valid = PessoaDAO.insert(nome, sexo, tipoDocumento, numDocumento, email, telefone, endereco, idade,
+				dataCadastro);
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("nome", nome);
@@ -115,6 +116,10 @@ public class PessoaBean implements Serializable {
 					"Erro ao cadastrar pessoa.", "Por favor repita o processo"));
 			return "insert";
 		}
+	}
+
+	public ArrayList<PessoaBean> getMessages() {
+		return PessoaDAO.getPessoas();
 	}
 
 }

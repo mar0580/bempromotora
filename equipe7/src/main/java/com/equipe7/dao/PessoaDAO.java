@@ -2,11 +2,14 @@ package com.equipe7.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.equipe7.util.DataConnect;
+import com.equipe7.beans.PessoaBean;
 
 public class PessoaDAO {
 	public static boolean insert(String nome, String sexo, int tipoDocumento, String numDocumento, String email,
@@ -42,5 +45,54 @@ public class PessoaDAO {
 			DataConnect.close(con);
 		}
 		return false;
+	}
+
+	public static ArrayList<PessoaBean> getPessoas() {
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = DataConnect.getConnection();
+			ps = con.prepareStatement("Select nome, idade, sexo, tipoDocumento, numDocumento, "
+					+ "dataCadastro, email, telefone, endereco from tb_pessoa");
+
+			ArrayList<PessoaBean> listarTodos = new ArrayList<PessoaBean>();
+
+			ResultSet rs = ps.executeQuery();
+
+			boolean encontrou = false;
+
+			while (rs.next()) {
+				PessoaBean pessoaBean = new PessoaBean();
+				pessoaBean.setNome(rs.getString("nome"));
+				pessoaBean.setIdade(rs.getLong("idade"));
+				pessoaBean.setSexo(rs.getString("sexo"));
+				pessoaBean.setTipoDocumento(rs.getInt("tipoDocumento"));
+				pessoaBean.setNumDocumento(rs.getString("numDocumento"));
+				pessoaBean.setDataCadastro(rs.getString("dataCadastro"));
+				pessoaBean.setEmail(rs.getString("email"));
+				pessoaBean.setTelefone(rs.getString("telefone"));
+				pessoaBean.setEndereco(rs.getString("endereco"));
+
+				listarTodos.add(pessoaBean);
+				encontrou = true;
+			}
+
+			rs.close();
+			
+			if (encontrou) {
+				
+				return listarTodos;
+			} else {
+				System.out.println("Nada nada");
+				return null; // nada encontrado
+			}
+
+		} catch (SQLException ex) {
+			System.out.println("Listar Pessoas error -->" + ex.getMessage());
+			return null;
+		} finally {
+			DataConnect.close(con);
+		}
 	}
 }

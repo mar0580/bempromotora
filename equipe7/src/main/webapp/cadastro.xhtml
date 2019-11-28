@@ -33,25 +33,25 @@
 				<h:panelGrid columns="2" cellpadding="5">
 					<p:outputLabel value="Nome" />
 					<p:inputText id="nome" value="#{pessoaBean.nome}" />
-					
+
 					<p:outputLabel value="Sexo" />
 					<p:inputText id="sexo" value="#{pessoaBean.sexo}" />
-					
+
 					<p:outputLabel value="Tipo Doc." />
-					<p:inputText id="tipoDocumento" value="#{pessoaBean.tipoDocumento}" />				
-					
+					<p:inputText id="tipoDocumento" value="#{pessoaBean.tipoDocumento}" />
+
 					<p:outputLabel value="Num. Documento" />
 					<p:inputText id="numDocumento" value="#{pessoaBean.numDocumento}" />
-					
+
 					<p:outputLabel value="Email" />
-					<p:inputText id="email" value="#{pessoaBean.email}" />				
-					
+					<p:inputText id="email" value="#{pessoaBean.email}" />
+
 					<p:outputLabel value="Telefone" />
 					<p:inputText id="telefone" value="#{pessoaBean.telefone}" />
-					
+
 					<p:outputLabel value="Endereço" />
 					<p:inputText id="endereco" value="#{pessoaBean.endereco}" />
-					
+
 					<p:outputLabel value="Idade" />
 					<p:inputText id="idade" value="#{pessoaBean.idade}" />
 				</h:panelGrid>
@@ -60,6 +60,69 @@
 			<h:commandButton value="Submit" action="#{pessoaBean.insert}" />
 		</p:panel>
 
+
+		<h:panelGrid columns="2" cellpadding="10">
+			<p:dataTable value="#{pessoaBean.messages}" var="o"
+				paginator="true" rows="3"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="3,5,10" widgetVar="50" style="width: 990px;">
+				<f:facet name="header">  
+		Pessoas
+	</f:facet>
+				<p:column sortBy="#{o.nome}">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{o.nome}" />
+				</p:column>
+				<p:column sortBy="#{o.sexo}">
+					<f:facet name="header">
+						<h:outputText value="Sexo" />
+					</f:facet>
+					<h:outputText value="#{o.sexo}" />
+				</p:column>
+				<p:column sortBy="#{o.tipoDocumento}">
+					<f:facet name="header">
+						<h:outputText value="Tipo Documento" />
+					</f:facet>
+					<h:outputText value="#{o.tipoDocumento}" />
+				</p:column>
+				<p:column sortBy="#{o.numDocumento}">
+					<f:facet name="header">
+						<h:outputText value="Numero" />
+					</f:facet>
+					<h:outputText value="#{o.numDocumento}" />
+				</p:column>
+
+				<p:column sortBy="#{o.dataCadastro}">
+					<f:facet name="header">
+						<h:outputText value="Data Cadastro" />
+					</f:facet>
+					<h:outputText value="#{o.dataCadastro}" />
+				</p:column>
+
+				<p:column sortBy="#{o.email}">
+					<f:facet name="header">
+						<h:outputText value="Email" />
+					</f:facet>
+					<h:outputText value="#{o.email}" />
+				</p:column>
+
+				<p:column sortBy="#{o.telefone}">
+					<f:facet name="header">
+						<h:outputText value="Telefone" />
+					</f:facet>
+					<h:outputText value="#{o.telefone}" />
+				</p:column>
+
+				<p:column sortBy="#{o.endereco}">
+					<f:facet name="header">
+						<h:outputText value="Endereco" />
+					</f:facet>
+					<h:outputText value="#{o.endereco}" />
+				</p:column>
+			</p:dataTable>
+		</h:panelGrid>
 
 
 

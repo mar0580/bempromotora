@@ -12,6 +12,7 @@ import com.equipe7.util.DataConnect;
 import com.equipe7.beans.PessoaBean;
 
 public class PessoaDAO {
+
 	public static boolean insert(String nome, String sexo, int tipoDocumento, String numDocumento, String email,
 			String telefone, String endereco, long idade, String dataCadastro) {
 		Connection con = null;
@@ -42,7 +43,7 @@ public class PessoaDAO {
 			System.out.println("Login error -->" + ex.getMessage());
 			return false;
 		} finally {
-			DataConnect.close(con);
+			DataConnect.close(con);		
 		}
 		return false;
 	}
@@ -79,9 +80,9 @@ public class PessoaDAO {
 			}
 
 			rs.close();
-			
+
 			if (encontrou) {
-				
+
 				return listarTodos;
 			} else {
 				System.out.println("Nada nada");

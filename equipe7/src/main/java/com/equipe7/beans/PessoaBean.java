@@ -110,16 +110,30 @@ public class PessoaBean implements Serializable {
 			session.setAttribute("telefone", telefone);
 			session.setAttribute("endereco", endereco);
 			session.setAttribute("idade", idade);
+
 			return "admin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Erro ao cadastrar pessoa.", "Por favor repita o processo"));
 			return "insert";
 		}
+
 	}
 
 	public ArrayList<PessoaBean> getMessages() {
 		return PessoaDAO.getPessoas();
+	}
+
+	public void clearFormPessoa() {
+		setNome(null);
+		setSexo(null);
+		setTipoDocumento(0);
+		setNumDocumento(null);
+		setEmail(null);
+		setTelefone(null);
+		setEndereco(null);
+		setIdade(0);
+
 	}
 
 }

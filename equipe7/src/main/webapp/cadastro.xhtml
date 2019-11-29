@@ -8,12 +8,11 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>App Bem Promotora - Proposta</title>
-	<style> 
-    .ui-widget, 
-    .ui-widget .ui-widget { 
-    font-size: 11px !important; 
-    } 
-</style> 
+	<style>
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 11px !important;
+}
+</style>
 	<script name="jquery/jquery.js" library="primefaces"></script>
 </h:head>
 <h:body>
@@ -60,16 +59,21 @@
 
 					<p:outputLabel value="Idade" />
 					<p:inputText id="idade" value="#{pessoaBean.idade}" />
-				</h:panelGrid>
-
+				</h:panelGrid>				
 			</h:panelGrid>
-			<h:commandButton value="Submit" action="#{pessoaBean.insert}" />
+			
+			
+			<h:commandButton value="Submit" action="#{pessoaBean.insert}" style="float:left;" />
+			&nbsp;&nbsp;
+			<h:commandButton value="Reset" action="#{pessoaBean.clearFormPessoa}" style="float:right;" />	
+			
+					
 		</p:panel>
 
 
 		<h:panelGrid columns="2" cellpadding="10">
-			<p:dataTable value="#{pessoaBean.messages}" var="o"
-				paginator="true" rows="3"
+			<p:dataTable value="#{pessoaBean.messages}" var="o" paginator="true"
+				rows="3"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="3,5,10" widgetVar="50" style="width: 990px;">
 				<f:facet name="header">  
@@ -129,11 +133,6 @@
 				</p:column>
 			</p:dataTable>
 		</h:panelGrid>
-
-
-
-
-
 	</h:form>
 </h:body>
 </html>
